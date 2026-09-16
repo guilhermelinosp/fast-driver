@@ -1,4 +1,6 @@
-# Fast Driver
+# Fast Driver 🚗
+
+[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml)
 
 [![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml)
 
@@ -69,9 +71,13 @@ com outro popup aberto ficam enfileiradas; duplicatas da mesma ride são
 ignoradas. `Recusar` oculta a ride localmente. `Aceitar` usa o
 `AcceptRideService` com o `driver_id` persistido.
 
-O app suporta somente Android e iOS. Por padrão, `ApiConfig` usa
-`http://localhost:8080` no iOS Simulator e `http://10.0.2.2:8080` no Android
-Emulator. Sobrescreva com `--dart-define=API_BASE_URL=...`.
+> **iOS apenas.** O target Android foi removido do projeto.
+
+O app usa `ApiConfig` com `API_BASE_URL` obrigatória (via `--dart-define` ou
+`--dart-define-from-file=.env`); sem ela, `ApiConfig.validate()` impede a
+inicialização. Por padrão, `http://localhost:8080` vale para o iOS Simulator;
+para dispositivo físico, aponte para o IP do host na rede. Sobrescreva com
+`--dart-define=API_BASE_URL=...`.
 
 ```bash
 flutter pub get
@@ -120,3 +126,7 @@ flutter run --dart-define-from-file=.env
 | `API_BASE_URL` | URL base do backend (contrato `POST /api/v1/drives/{rideId}/accept`) |
 
 Sem `API_BASE_URL` o app não inicia (`ApiConfig.validate()` lança erro).
+
+## Licença
+
+Todos os direitos reservados — veja [LICENSE](LICENSE).
