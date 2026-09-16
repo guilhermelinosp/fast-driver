@@ -1,5 +1,7 @@
 # Fast Driver
 
+[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml)
+
 Vertical slice independente em Flutter para um Driver receber e aceitar
 corridas. A UI usa `StatefulWidget`/`setState`; os serviços e receivers são
 interfaces/injetáveis para testes.
