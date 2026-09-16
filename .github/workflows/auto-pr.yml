@@ -1,0 +1,19 @@
+name: auto-pr
+
+on:
+  push:
+    branches:
+      - "feat/**"
+      - "fix/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-pr:
+    uses: guilhermelinosp/templates/.github/workflows/auto-pr.yml@8f299961846cf1d0cbf7129a99ea6c3095ec3abd
+    with:
+      app-client-id: ${{ vars.HELLNET_ACTIONS_CLIENT_ID }}
+    secrets: inherit

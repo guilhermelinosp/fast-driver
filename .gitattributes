@@ -1,0 +1,36 @@
+# https://git-scm.com/docs/gitattributes
+# Normaliza line endings — LF em texto, sem conversão em binários.
+
+* text=auto eol=lf
+
+# Dart / Flutter
+*.dart text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.lock text eol=lf
+*.md text eol=lf
+
+# iOS
+*.plist text eol=lf
+*.pbxproj text eol=lf
+*.xcconfig text eol=lf
+*.swift text eol=lf
+*.m text eol=lf
+*.h text eol=lf
+
+# Binários — nunca converter / fazer diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.dSYM binary
+*.ipa binary
+*.xcarchive binary
+*.mobileprovision binary

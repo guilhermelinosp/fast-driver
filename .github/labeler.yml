@@ -1,0 +1,36 @@
+# PR labeler rules (consumed by pr-check.yml labeler job).
+# See https://github.com/actions/labeler (v7 schema)
+---
+"flutter":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "lib/**"
+          - "test/**"
+          - "pubspec.yaml"
+          - "analysis_options.yaml"
+
+"ios":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "ios/**"
+
+"github_actions":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - ".gitignore"
+          - ".lefthook.yml"
+          - ".editorconfig"
+          - ".aiignore"
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "pubspec.yaml"
+          - "pubspec.lock"
+
+"docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"

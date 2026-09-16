@@ -1,0 +1,64 @@
+name: pr-check
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v7
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          configuration-path: .github/labeler.yml
+          sync-labels: true
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  pr-gate:
+    if: always()
+    needs: [labeler, gitleaks]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: gate
+        if: always()
+        shell: python
+        env:
+          NEEDS: ${{ toJson(needs) }}
+        run: |
+          import json, os, sys
+          needs = json.loads(os.environ['NEEDS'])
+          failed = [k for k, v in needs.items() if v.get('result') not in ('success', 'skipped')]
+          if failed:
+              print('BLOCKED-BY:', failed)
+              sys.exit(1)
+          print('ALL-GREEN')

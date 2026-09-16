@@ -1,0 +1,55 @@
+# ============================================================
+# .aiignore — arquivos que agentes de IA não devem ler/editar
+# ============================================================
+# Diretórios de dependências e build
+.dart_tool/
+.pub-cache/
+pubspec.lock
+build/
+coverage/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+**/xcuserdata/
+**/DerivedData/
+
+# Configuração local de IDEs / ferramentas
+.idea/
+.vscode/
+.codex/
+.claude/
+.agents/
+*.iml
+
+# Artefatos de build mobile
+*.ipa
+*.apk
+*.aab
+*.dSYM
+*.dSYM.zip
+app.*.symbols
+app.*.map.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Credenciais e segredos
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.mobileprovision
+
+# Logs e temporários
+*.log
+*.tmp
+tmp/
+.temp/
+migrate_working_dir/
+
+# Mídia pesada e binários (não versionados)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.zip

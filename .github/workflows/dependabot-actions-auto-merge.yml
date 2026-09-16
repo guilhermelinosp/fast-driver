@@ -1,0 +1,27 @@
+name: dependabot-actions-auto-merge
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: github.actor == 'dependabot[bot]' && startsWith(github.event.pull_request.head.ref, 'dependabot/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Enable auto-merge for dependabot PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          # Approve (required when branch protection demands reviews)
+          gh pr review "$PR_NUMBER" --approve --body "Auto-approved by dependabot-actions-auto-merge."
+          # Mark for auto-merge (squash). CI must pass before it merges.
+          gh pr merge "$PR_NUMBER" --squash --auto

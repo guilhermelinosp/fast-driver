@@ -1,0 +1,17 @@
+# https://github.com/evilmartians/lefthook
+# Install: brew install lefthook && lefthook install
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      run: dart format --output=none --set-exit-if-changed {staged_files}
+    analyze:
+      run: flutter analyze
+
+pre-push:
+  parallel: false
+  commands:
+    test:
+      run: flutter test
