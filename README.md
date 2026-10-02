@@ -1,8 +1,8 @@
 # Fast Driver 🚗
 
-[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml)
+[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pr-check.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pr-check.yml)
 
-[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pipeline.yml)
+[![CI](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pr-check.yml/badge.svg)](https://github.com/guilhermelinosp/fast-driver/actions/workflows/pr-check.yml)
 
 Vertical slice independente em Flutter para um Driver receber e aceitar
 corridas. A UI usa `StatefulWidget`/`setState`; os serviços e receivers são
